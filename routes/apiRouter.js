@@ -35,41 +35,22 @@ router.route('/:user')
     .delete(deleteUser);        // delete a user and the corresponding records from other collections permanently
 
 // routine route (for each user)
+// -- each user can have only one routine at a time (can be changed later if required)
 router.route('/:user/routine')
-    .get(getRoutine)
-    .post(createRoutine)
-    .patch(updateRoutine)
-    .delete()
+    .get(getRoutine)            // get the routine of the user specified in URL
+    .post(createRoutine)        // create a routine for the specified user. Overwrite if already exists
+    .patch(updateRoutine)       // edit a particular day/days of the routine(more granular control required)
+    .delete()                   // delete routine of specified user (**yet to be implemented)
 
-// records route
+// records route (single date)
 router.route('/:user/:code/:date')
-    .post(createRecord)
-    .patch()
-    .delete()
+    .post(createRecord)         // create the attendance record for the code specified, for a single date
+    .patch()                    // edit the attendance status (present, absent, no classes) (*** yet to be implemented ***)
+    .delete()                   // delete the attendance record for specified code and date (*** yet to be implemented ***)  
 
+// records route (date range) (*** yet to be implemented ***)
+router.route('/:user/:code/:startDate-:endDate')
+    .get()                      // gets all records for the date specified
 
-router.get('/', async (req, res)=> {
     
-    const arr = [
-        {
-            "test1" : "x"
-        },
-        {
-            "test1" : "y"
-        },
-        {
-            "test1" : "z"
-        }
-    ]
-    res.json(arr);
-})
-/**
- * user stats will show up on user dashboard
- * getting and setting routine on the routine route
- * 
- * no records route
- * 
- * /:user/:date will accept different forms of json
- */
-
 export default router;
