@@ -1,0 +1,43 @@
+AMS API documentation:
+_____________________
+
+Use cases for data:
+
+1. Rendering calendar with dates and respective status (P, A, NA).
+    A date range is to be specified, like starting and ending date of a month for each request made.
+    The records for the month will be the response.
+    
+    Response JSON structure:
+    [
+        {
+            "date" : "04-04-2024",
+            "other-fields" : "other fields and values go after this"
+        },
+        {
+            "date" : "04-04-2024",
+            "other-fields" : "other fields and values go after this"
+        },
+        {
+            "date" : "04-04-2024",
+            "other-fields" : "other fields and values go after this"
+        }
+    ]
+
+    A JSON array of the collected records will be sent as response.
+
+    Config: GET('/:user/:startdate-:enddate')
+
+2. Getting routine for a user.
+
+    Response JSON structure:
+    {
+        tue: {Object},
+        wed: {Object},
+        thu: {Object},
+        fri: {Object},
+        sat: {Object}
+    }
+
+    Config: GET('/:user/routine)
+
+3. 
